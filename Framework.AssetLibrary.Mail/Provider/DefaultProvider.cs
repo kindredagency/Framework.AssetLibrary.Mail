@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Framework.AssetLibrary.Mail.Provider
 {
@@ -20,7 +15,7 @@ namespace Framework.AssetLibrary.Mail.Provider
                 Timeout = settings.Timeout,
                 DeliveryMethod = settings.DeliveryMethod,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(settings.Username, settings.Password),
+                Credentials = new NetworkCredential(settings.Username, settings.Password)
             };
 
             smtpClient.Send(message);

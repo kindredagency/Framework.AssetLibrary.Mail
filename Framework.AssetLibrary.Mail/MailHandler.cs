@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Mail;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
 using Framework.AssetLibrary.Mail.Provider;
 
 namespace Framework.AssetLibrary.Mail
 {
     public class MailHandler : IMailHandler
     {
-        private MailSettings Settings { get; }
-
-        private IMailProvider Provider { get; }
-
         public MailHandler(MailSettings settings)
         {
             Settings = settings;
@@ -28,6 +18,10 @@ namespace Framework.AssetLibrary.Mail
             Settings = settings;
             Provider = provider;
         }
+
+        private MailSettings Settings { get; }
+
+        private IMailProvider Provider { get; }
 
         public MailStatus SendEmail(MailAddress from, MailAddress[] to, string subject, string body, bool html = true)
         {
@@ -44,7 +38,7 @@ namespace Framework.AssetLibrary.Mail
             return SendEmail(from, to, subject, body, cc, null, attachments, html);
         }
 
-        public MailStatus SendEmail(MailAddress from, MailAddress[] to, string subject, string body, MailAddress[] cc, MailAddress[] bcc,  Attachment[] attachments, bool html = true)
+        public MailStatus SendEmail(MailAddress from, MailAddress[] to, string subject, string body, MailAddress[] cc, MailAddress[] bcc, Attachment[] attachments, bool html = true)
         {
             try
             {
@@ -89,11 +83,11 @@ namespace Framework.AssetLibrary.Mail
 
                 Provider.Send(Settings, message);
 
-                return new MailStatus { Status = MailStatusType.Sent };
+                return new MailStatus {Status = MailStatusType.Sent};
             }
             catch (Exception ex)
             {
-                return new MailStatus { Status = MailStatusType.Error, Exception = ex };
+                return new MailStatus {Status = MailStatusType.Error, Exception = ex};
             }
         }
     }

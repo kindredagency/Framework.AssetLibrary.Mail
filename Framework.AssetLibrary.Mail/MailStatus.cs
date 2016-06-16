@@ -7,6 +7,5 @@ namespace Framework.AssetLibrary.Mail
         public MailStatusType Status { get; internal set; }
 
         public Exception Exception { get; internal set; }
-      
     }
 }
